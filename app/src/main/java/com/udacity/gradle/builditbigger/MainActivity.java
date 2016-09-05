@@ -1,24 +1,32 @@
 package com.udacity.gradle.builditbigger;
 
+import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.bsdsolutions.sanjaydixit.jokerlive.JokerLiveActivity;
 import com.bsdsolutions.sanjaydixit.jokerlive.JokerLiveUtils;
+import com.example.sanjaydixit.myapplication.backend.myApi.MyApi;
+import com.google.api.client.extensions.android.http.AndroidHttp;
+import com.google.api.client.extensions.android.json.AndroidJsonFactory;
+import com.google.api.client.googleapis.services.AbstractGoogleClientRequest;
+import com.google.api.client.googleapis.services.GoogleClientRequestInitializer;
+import com.google.appengine.repackaged.com.google.common.base.Pair;
+
+import java.io.IOException;
 
 public class MainActivity extends ActionBarActivity {
-
-    private Joker joker = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        joker = new Joker();
     }
 
 
@@ -45,12 +53,8 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void tellJoke(View view) {
-        if(joker == null)
-            joker = new Joker();
-        Intent intent = new Intent(this,JokerLiveActivity.class);
-        intent.putExtra(JokerLiveUtils.INTENT_KEY_JOKE,joker.tellJoke());
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
+
+        new EndpointsAsyncTask().execute(this);
     }
 
 

@@ -13,7 +13,7 @@ public class Joker {
             "– Yes.", "Lotteries are a tax on people who suck at math.\n" +
             "\n"};
 
-    String tellJoke() {
+    public String tellJoke() {
         return jokesList[rand.nextInt(jokesList.length)];
     }
 
