@@ -7,7 +7,7 @@ import android.util.Log;
  * Created by sanjaydixit on 05/09/16.
  */
 public class StringNotEmptyTest extends AndroidTestCase {
-    public void runTest() {
+    public void test() {
         String result = null;
         Log.d("BuildItBiggerTest","Running unit test to check if string is empty!");
         EndpointsAsyncTask asyncTask = new EndpointsAsyncTask();
